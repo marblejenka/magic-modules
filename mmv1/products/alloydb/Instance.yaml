@@ -327,7 +327,7 @@ properties:
       - !ruby/object:Api::Type::String
         name: 'serviceAttachmentLink'
         output: true
-        # default_from_api: true
+        default_from_api: true
         description: |
           The service attachment created when Private Service Connect (PSC) is enabled for the instance.
           The name of the resource will be in the format of
