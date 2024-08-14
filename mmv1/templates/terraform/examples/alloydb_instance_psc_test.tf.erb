@@ -13,9 +13,6 @@ resource "google_alloydb_instance" "<%= ctx[:primary_resource_id] %>" {
 resource "google_alloydb_cluster" "<%= ctx[:primary_resource_id] %>" {
   cluster_id = "<%= ctx[:vars]['alloydb_cluster_name'] %>"
   location   = "us-central1"
-  network_config {
-    network = google_compute_network.default.id
-  }
 
   initial_user {
     password = "<%= ctx[:vars]['alloydb_cluster_name'] %>"
@@ -23,24 +20,4 @@ resource "google_alloydb_cluster" "<%= ctx[:primary_resource_id] %>" {
   psc_config {
     psc_enabled = true
   }
-}
-
-data "google_project" "project" {}
-
-resource "google_compute_network" "default" {
-  name = "<%= ctx[:vars]['network_name'] %>"
-}
-
-resource "google_compute_global_address" "private_ip_alloc" {
-  name          =  "<%= ctx[:vars]['alloydb_cluster_name'] %>"
-  address_type  = "INTERNAL"
-  purpose       = "VPC_PEERING"
-  prefix_length = 16
-  network       = google_compute_network.default.id
-}
-
-resource "google_service_networking_connection" "vpc_connection" {
-  network                 = google_compute_network.default.id
-  service                 = "servicenetworking.googleapis.com"
-  reserved_peering_ranges = [google_compute_global_address.private_ip_alloc.name]
 }
