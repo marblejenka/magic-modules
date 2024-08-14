@@ -110,7 +110,7 @@ examples:
       - 'update_time'
     skip_docs: true
   - !ruby/object:Provider::Terraform::Examples
-    name: 'alloydb_psc_test'
+    name: 'alloydb_instance_psc_test'
     primary_resource_id: 'default'
     vars:
       alloydb_cluster_name: 'alloydb-cluster'
