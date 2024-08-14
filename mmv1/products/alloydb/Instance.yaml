@@ -109,6 +109,16 @@ examples:
       - 'reconciling'
       - 'update_time'
     skip_docs: true
+  - !ruby/object:Provider::Terraform::Examples
+    name: 'alloydb_psc_test'
+    primary_resource_id: 'default'
+    vars:
+      alloydb_cluster_name: 'alloydb-cluster'
+      alloydb_instance_name: 'alloydb-instance'
+    ignore_read_extra:
+      - 'reconciling'
+      - 'update_time'
+    skip_docs: true
 parameters:
   - !ruby/object:Api::Type::ResourceRef
     name: 'cluster'
@@ -316,6 +326,7 @@ properties:
       - !ruby/object:Api::Type::String
         name: 'serviceAttachmentLink'
         output: true
+        # default_from_api: true
         description: |
           The service attachment created when Private Service Connect (PSC) is enabled for the instance.
           The name of the resource will be in the format of
@@ -331,6 +342,7 @@ properties:
       - !ruby/object:Api::Type::String
         name: 'pscDnsName'
         output: true
+        default_from_api: true
         description: |
           The DNS name of the instance for PSC connectivity.
           Name convention: <uid>.<uid>.<region>.alloydb-psc.goog
