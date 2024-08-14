@@ -118,7 +118,7 @@ examples:
     ignore_read_extra:
       - 'reconciling'
       - 'update_time'
-    # skip_docs: true
+    skip_docs: true
 parameters:
   - !ruby/object:Api::Type::ResourceRef
     name: 'cluster'
